@@ -1,0 +1,21 @@
+.wp-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wp-list-status a{
+    padding: 0 4px;
+    text-align: center;
+    display: inline-block;
+}
+
+.active-bottom {
+    display: inline-block;
+    font-weight: 400;
+    text-shadow: 0 0 1px #419af9;
+    background-color: #ebebeb;
+    border-radius: 5px;
+}
+
+

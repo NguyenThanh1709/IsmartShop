@@ -1,0 +1,44 @@
+.autofill {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.wp_thumbnail {
+    width: 13%;
+}
+
+#modal-info {
+    background-color: rgb(0, 0, 0, 0.4);
+}
+
+.img_thumbnail {
+    width: 100%;
+}
+
+.text-badge {
+    font-size: 13px;
+}
+
+.wp_image_uploaded {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.wp_image_uploaded img {
+    width: 100%;
+}
+
+body .form-check {
+    padding-left: 2.25rem;
+}
+
+@keyframes showModal {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

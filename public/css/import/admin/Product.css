@@ -1,0 +1,41 @@
+/* CSS ListColor */
+#warper-paging {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.note {
+    font-size: 12px;
+    font-style: italic;
+    color: #333;
+}
+
+.text-item {
+    color: #4e4e4e;
+    font-weight: 400;
+    padding-left: 8px;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+  }
+
+#color-name {
+    color: #333;
+    font-weight: 400;
+}
+
+.wp-form-quantity {
+    display: none;
+}
+
+.wp-check:hover, .checkbox-item-config label:hover{
+    cursor: pointer;
+}
+
+/* .wp-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */

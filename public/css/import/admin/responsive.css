@@ -1,0 +1,123 @@
+/* Mobile & Tablet */
+@media (max-width:1023px) {
+    body .wp-input {
+        margin-bottom: 8px;
+    }
+
+    body .wp-input-phone {
+        width: 67%;
+    }
+
+    body .wp-button-check-number-phone {
+        width: 30%;
+    }
+
+    body .wp-button-check-number-phone a {
+        padding: 6px 2px;
+    }
+
+    body .btn-add-order {
+        width: 100%;
+    }
+
+    body #sidebar {
+        display: none;
+    }
+
+    body #modal-dialog-add-product-order {
+        min-width: 80%;
+    }
+
+    body .wp-number-order input {
+        text-align: start;
+        width: 50px;
+    }
+
+    body .color-option, body .quantity-class, body .config-option {
+        width: 120px;
+    }
+
+    body #wp-content {
+        margin-top: 14%;
+        padding: 2px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    body .btn-group {
+        display: none;
+    }
+
+    body .card {
+        max-width: none;
+    }
+
+    body .icon-menu {
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+        font-size: 28px;
+        padding: 8px;
+    }
+
+    body .btn-submit {
+        width: 100%;
+    }
+
+    body .img_thumbnail {
+        width: 200px;
+    }
+
+    body #image-chooseFile {
+        width: 50%;
+    }
+
+    body .btn-add {
+        display: none;
+    }
+
+    body #warpper {
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    body .btn-add--responsive {
+        display: block;
+    }
+
+    body .list-option-responsive {
+        width: 60%;
+    }
+
+    body .form-search {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    body .form-search input {
+        padding-left: 8px;
+    }
+
+    /* body .wp-info-customer .row{
+        width: 100%;
+    } */
+
+    body .card-body form {
+        width: 100%;
+    }
+
+    body .modal-body {
+       position: relative;
+    }
+
+}
+
+/* Tablet */
+@media (min-width: 740px) and (max-width:1023px) {}
+
+/* Mobile*/
+@media (max-width: 739px) {
+    body .card-body {
+        padding: 12px;
+    }
+}
