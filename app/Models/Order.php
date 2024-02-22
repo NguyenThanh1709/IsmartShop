@@ -11,7 +11,7 @@ class Order extends Model
 {
     use HasFactory;
     // use SoftDeletes;
-    protected $fillable = ['name', 'email', 'phone', 'total', 'status', 'province-city', 'district', 'commune', 'address', 'payment_method', 'note', 'matp', 'maqh', 'xaid'];
+    protected $fillable = ['id', 'name', 'email', 'phone', 'total', 'status', 'province-city', 'district', 'commune', 'address', 'payment_method', 'note', 'matp', 'maqh', 'xaid'];
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');

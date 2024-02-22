@@ -114,4 +114,11 @@
     /* font-family: 'Roboto Medium'; */
     font-weight: normal;
 }
+
+.btn-payment-oline {
+    border: none;
+    margin-top: 2px;
+    margin-left: 16px;
+}
+
 .checkout-page #fullname, .checkout-page #phone, .checkout-page #email, .checkout-page #desire{ margin-bottom: 0!important;}

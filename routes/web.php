@@ -18,6 +18,7 @@ use App\Http\Controllers\ClientHomeController;
 use App\Http\Controllers\ClientPageController;
 use App\Http\Controllers\ClientProductController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\VNPayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -205,6 +206,9 @@ Route::post('/commune', [ClientCheckoutController::class, 'getCommune'])->name('
 Route::get('/order-success', [ClientCheckoutController::class, 'orderSuccess'])->name('orderSuccess');
 
 // MODULE VNPAY
+Route::get('/thanh-toan-vnpay', [VNPayController::class, 'index'])->name('vnpay.payment');
+Route::post('/thanh-toan-vnpay', [VNPayController::class, 'createPayment'])->name('vnpay.create.payment');
+Route::get('/thanh-toan-vnpay-thanh-cong.htm', [VNPayController::class, 'vnpayReturn'])->name('vnpay.returnURL');
 // CV
 Route::get('/vothanhdevcv', function () {
     return view('vothanhdev.vothanhdev');

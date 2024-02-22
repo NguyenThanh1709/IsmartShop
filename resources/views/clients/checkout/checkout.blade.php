@@ -152,6 +152,16 @@
                             </li>
 
                         </ul>
+                        <div class="checkout-online">
+                            <span class="font-italic">Đặt hàng và thanh toán online</span>
+                            <div class="wp-img-logo-payment">
+                                <div class="row">
+                                    <button type="submit" name="payment-vnpay" class="btn-payment-oline col-lg-4">
+                                        <img src="public/images/Logo-VNPAY-QR-1.webp" alt="">
+                                    </button>
+                                </div>               
+                            </div>
+                        </div>
                     </div>
                     <div class="place-order-wp clearfix">
                         <input type="submit" id="order-now" value="Đặt hàng">

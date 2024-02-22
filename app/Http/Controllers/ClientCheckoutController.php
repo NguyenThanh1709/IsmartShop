@@ -10,11 +10,13 @@ use App\Models\tbl_commune;
 use App\Models\tbl_district;
 use App\Models\tbl_province_city;
 use App\Models\Warehouse;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Psy\CodeCleaner\IssetPass;
 
 class ClientCheckoutController extends Controller
 {
@@ -59,7 +61,7 @@ class ClientCheckoutController extends Controller
         $menu = render_menu($productCat, 0, 0);
         $listCity = tbl_province_city::pluck('name', 'matp');
         $listCity[''] = '---Chọn Tỉnh/Thành phố---';
-        return view('clients.checkout.checkout', compact('listCity','menu'));
+        return view('clients.checkout.checkout', compact('listCity', 'menu'));
     }
 
     public function getDistrict(Request $request)
@@ -82,6 +84,7 @@ class ClientCheckoutController extends Controller
             $productQuantity = Warehouse::where('id', $item->options->warehouse_id)->value('quantity');
         }
         global $order_id;
+        //Validation
         $request->validate(
             [
                 'name' => 'required',
@@ -107,8 +110,17 @@ class ClientCheckoutController extends Controller
                 'address' => 'Địa chỉ'
             ]
         );
+
+        //VNPAY Payment
+        if (isset($_POST['payment-vnpay'])) {
+            session(['order_request' => $request->all()]);
+            return redirect()->route('vnpay.payment');
+        }
+        $timeString = Carbon::now()->format('His') + random_int(0, 99);
+        $codeOrder = $timeString;
         if (Cart::total() > 0) {
             $Order = Order::create([
+                'id' => $codeOrder,
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'phone' => $request->input('phone'),
@@ -120,7 +132,7 @@ class ClientCheckoutController extends Controller
                 'address' => $request->input('address')
             ]);
 
-            $order_id = $Order->id;
+            // $order_id = $Order->id;
             foreach (Cart::content() as $item) {
                 //Lấy số lượng sản phẩm trong kho
                 $productQty = Warehouse::where('id', $item->options->warehouse_id)->value('quantity');
@@ -134,7 +146,7 @@ class ClientCheckoutController extends Controller
                 }
                 OrderDetail::create([
                     'product_id' => $item->id,
-                    'order_id' => $order_id,
+                    'order_id' => $codeOrder,
                     'thumbnail' => $item->options->thumbnail,
                     'name' => $name,
                     'price' => $item->price,
@@ -163,7 +175,7 @@ class ClientCheckoutController extends Controller
             $infoOrder = json_decode(session('infoOrder'), true);
             $productCat = ProductCat::where('status', 'public')->get();
             $menu = render_menu($productCat, 0, 0);
-            return view('clients.checkout.ordersuccess', compact('infoOrder','menu'));
+            return view('clients.checkout.ordersuccess', compact('infoOrder', 'menu'));
         } else {
             return redirect()->route('home.index');
         }
