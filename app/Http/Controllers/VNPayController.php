@@ -16,6 +16,7 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class VNPayController extends Controller
 {
@@ -143,16 +144,25 @@ class VNPayController extends Controller
                     ]);
                 }
 
-                
-                Payment::create([
-                    'order_id' => $order_id,
-                    'p_code_bank' => $request->input('vnp_BankCode'),
-                    'p_note' => $request->input('vnp_OrderInfo'),
-                    'p_money' => $request->input('vnp_Amount'),
-                    'p_vpn_response_code' => $request->input('vnp_ResponseCode'),
-                    'p_time' => $request->input('vnp_PayDate'),
-                    'p_code_vnpay' => $request->input('vnp_BankTranNo')
-                ]);
+                try {
+                    $payment = Payment::create([
+                        'order_id' => $order_id,
+                        'p_code_bank' => $request->input('vnp_BankCode'),
+                        'p_note' => $request->input('vnp_OrderInfo'),
+                        'p_money' => $request->input('vnp_Amount'),
+                        'p_vpn_response_code' => $request->input('vnp_ResponseCode'),
+                        'p_time' => $request->input('vnp_PayDate'),
+                        'p_code_vnpay' => $request->input('vnp_BankTranNo')
+                    ]);
+
+                    if ($payment) {
+                        Session::flash('success_message', "Đặt hàng và thanh toán thành công!");
+                    } else {
+                        Session::flash('error_message', "Đã xảy ra lỗi trong quá trình đặt hàng và thanh toán.");
+                    }
+                } catch (\Exception $e) {
+                    $alert = "Đã xảy ra lỗi trong quá trình đặt hàng và thanh toán: " . $e->getMessage();
+                }
 
                 $name_city = tbl_province_city::select('name')->where('matp', $Order->matp)->first()->name;
                 $name_district = tbl_district::select('name')->where('maqh', $Order->maqh)->first()->name;

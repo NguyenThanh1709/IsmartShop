@@ -18,11 +18,27 @@
         </div>
         <div class="wrap clearfix wp-inner wp_noti_order_success">
             <div class="wp_container_noti_success">
-                <h2 class="font-weight-bold h4 mb-2 d-block text-success"><i class="fa-solid fa-circle-check mr-2"></i>ĐẶT
-                    HÀNG THÀNH
-                    CÔNG</h2>
+                @if (Session::has('success_message'))
+                    <div class="">
+                        <h2 class="font-weight-bold h4 mb-2 d-block text-success"><i
+                                class="fa-solid fa-circle-check mr-2"></i>{{ Session::get('success_message') }}</h2>
+                    </div>
+                @else
+                    <div class="">
+                        <h2 class="font-weight-bold h4 mb-2 d-block text-success"><i
+                                class="fa-solid fa-circle-check mr-2"></i>Đặt hàng thành công!</h2>
+                    </div>
+                @endif
+
+                @if (Session::has('error_message'))
+                    <div class="alert alert-danger">
+                        <h2 class="font-weight-bold h4 mb-2 d-block text-danger"><i
+                                class="fa-solid fa-circle-times mr-2"></i>{{ Session::get('error_message') }}</h2>
+                    </div>
+                @endif
                 <p class="">Cảm ơn quý khách đã đặt hàng tại cửa hàng chúng tôi.</p>
-                <p>Nhân viên của chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng, thời gian giao hàng chậm nhất là 48h.
+                <p>Nhân viên của chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng, thời gian giao hàng chậm nhất là
+                    48h.
                 </p>
             </div>
         </div>
@@ -93,7 +109,8 @@
                                         <td class="thead-text text-left">{{ $item->name }}
                                             @if ($item->options->config != '')
                                                 {{ '/' . $item->options->config . '/' . $item->options->color }}
-                                            @endif</td>
+                                            @endif
+                                        </td>
                                         <td class="thead-text">{{ number_format($item->price, 0, '', ',') . 'đ' }}</td>
                                         <td class="thead-text">{{ $item->qty }}</td>
                                         <td class="thead-text">{{ number_format($item->total, 0, '', ',') . 'đ' }}</td>
